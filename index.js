@@ -23,6 +23,15 @@ app.get('/words', function(req, res) {
     });
 });
 
+app.get('/addWord', function(req, res) {
+    var db = req.db;
+    db.collection('wordlist').insert({
+        word: req.query.word
+    }, function(err, doc) {
+        res.json('inserted');
+    });
+});
+
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'));
 });
