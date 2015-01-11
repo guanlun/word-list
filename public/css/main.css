@@ -1,5 +1,5 @@
 .edit-modal {
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     width: 100%;
@@ -16,12 +16,40 @@
 
 .edit-modal .dialog {
     position: relative;
-    left: 50%;
-    top: 50%;
-    margin-left: -200px;
-    margin-top: -150px;
+    top: 150px;
     width: 400px;
     height: 300px;
+    margin: 0 auto;
     background: white;
     padding: 20px;
+}
+
+.edit-modal .dialog .close-btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.edit-modal .dialog input {
+    margin-top: 20px;
+}
+
+.list-group-item {
+    font-size: 18px;
+}
+
+.list-group-item.important {
+    background: #faf2cc;
+}
+
+.list-group-item.important:hover {
+    background: #fdf9d2;
+}
+
+.list-group-item .btn-container {
+    visibility: hidden;
+}
+
+.list-group-item:hover .btn-container {
+    visibility: visible;
 }

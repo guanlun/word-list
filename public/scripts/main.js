@@ -130,8 +130,15 @@ wordListApp.controller('mainCtrl', function($scope, $routeParams, wordListSrvc) 
         $scope.meaningEditing = word.meaning;
     }
 
-    $scope.updateWord = function(newTitle, newMeaning) {
+    $scope.closeEditModal = function() {
         $scope.editing = false;
+        $scope.origWord = "";
+        $scope.titleEditing = "";
+        $scope.meaningEditing = "";
+    }
+
+    $scope.updateWord = function(newWord, newMeaning) {
+        $scope.closeEditModal();
 
         var newWord = {
             title: newTitle,
@@ -146,6 +153,18 @@ wordListApp.controller('mainCtrl', function($scope, $routeParams, wordListSrvc) 
             list_name: $scope.currListName,
             orig_word: $scope.origWord,
             new_word: newWord
+        }).then(function(data) {
+            console.log(data);
+        });
+    };
+
+    $scope.markImportant = function(word) {
+        word.important = !word.important;
+
+        wordListSrvc.updateWord({
+            list_name: $scope.currListName,
+            orig_word: word,
+            new_word: word
         }).then(function(data) {
             console.log(data);
         });
