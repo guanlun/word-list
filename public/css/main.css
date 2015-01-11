@@ -46,10 +46,25 @@
     background: #fdf9d2;
 }
 
-.list-group-item .btn-container {
+.list-group-item .hover-display {
     visibility: hidden;
 }
 
-.list-group-item:hover .btn-container {
+.list-group-item:hover .hover-display {
     visibility: visible;
+}
+
+.list-group-item .btn-group {
+    float: right;
+}
+
+@media (max-width: 767px) {
+    form .form-control {
+        margin-top: 10px;
+    }
+
+    .list-group-item .btn-group {
+        margin-top: 10px;
+        float: none;
+    }
 }
