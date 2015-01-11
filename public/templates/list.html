@@ -1,30 +1,55 @@
 <div ng-controller="mainCtrl">
-    <form ng-submit="insertWord(title, meaning)">
-        <input type="text" ng-model="title" placeholder="word" required />
-        <input type="text" ng-model="meaning" placeholder="meaning" required />
-        <input type="submit" />
+    <div class="page-header">
+        <h1>{{currListName}}</h1>
+    </div>
+    <form ng-submit="insertWord(title, meaning)" class="form-horizontal">
+        <div class="form-group">
+            <div class="col-sm-2">
+                <input type="text"
+                    ng-model="title"
+                    class="form-control"
+                    placeholder="word"
+                    required />
+            </div>
+            <div class="col-sm-2">
+                <input type="text"
+                    ng-model="meaning"
+                    class="form-control"
+                    placeholder="meaning"
+                    required />
+            </div>
+            <div class="col-sm-2">
+                <input type="submit" class="form-control" />
+            </div>
+        </div>
     </form>
 
-    <div class="words-container">
-        <div class="word-item"
+    <div class="list-group">
+        <a class="list-group-item"
             ng-repeat="word in getCurrWordList()">
-            <span class="word-title"
-                contenteditable="true">
-                {{word.title}}
-            </span>
-            <span class="word-meaning"
-                contenteditable="true">
-                {{word.meaning}}
-            </span>
-            <span class="edit-btn"
-                ng-click="openEditModal()">
-                edit
-            </span>
-            <span class="word-delete-btn"
-                ng-click="deleteWord(word._id)">
-                X
-            </span>
-        </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    <strong>
+                        {{word.title}}
+                    </strong>
+                    <small class="word-meaning text-muted">
+                        &nbsp;&nbsp;&nbsp;{{word.meaning}}
+                    </small>
+                </div>
+                <div class="col-sm-2">
+                    <div class="pull-right">
+                        <button class="btn btn-default"
+                            ng-click="openEditModal()">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                        <button class="btn btn-default"
+                            ng-click="deleteWord(word.title)">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </a>
     </div>
 
     <div class="edit-modal" ng-show="editing">

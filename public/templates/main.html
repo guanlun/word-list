@@ -1,12 +1,29 @@
 <div ng-controller="mainCtrl">
-    <form ng-submit="createWordList(listName)">
-        <input type="text" ng-model="listName" placeholder="Word List Name" required />
-        <input type="submit" />
+    <div class="page-header">
+        <h1>Word List</h1>
+    </div>
+
+    <form ng-submit="createWordList(listName)" class="form-horizontal">
+        <div class="form-group">
+            <div class="col-sm-2">
+                <input type="text"
+                    ng-model="listName"
+                    class="form-control"
+                    placeholder="Word List"
+                    required />
+            </div>
+            <div class="col-sm-2">
+                <input type="submit" class="form-control" />
+            </div>
+        </div>
     </form>
 
-    <div class="word-lists-container">
-        <div class="wordlist-item" ng-repeat="list in wordLists">
-            <a ng-href="#/word_list/{{list._id}}">{{list.list_name}}</a>
-        </div>
+    <div class="list-group">
+        <a class="list-group-item"
+            ng-repeat="list in wordLists"
+            ng-href="#/word_list/{{list.list_name}}">
+            {{list.list_name}}
+            <span class="badge">{{list.words.length}}</span>
+        </a>
     </div>
 </div>
