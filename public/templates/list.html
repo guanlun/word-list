@@ -1,57 +1,76 @@
 <div ng-controller="mainCtrl">
-    <div class="page-header">
-        <h1>{{currListName}}</h1>
-    </div>
-    <form ng-submit="insertWord(title, meaning)" class="form-horizontal">
-        <div class="form-group">
-            <div class="col-sm-2">
-                <input type="text"
-                    ng-model="title"
-                    class="form-control"
-                    placeholder="word"
-                    required />
-            </div>
-            <div class="col-sm-2">
-                <input type="text"
-                    ng-model="meaning"
-                    class="form-control"
-                    placeholder="meaning"
-                    required />
-            </div>
-            <div class="col-sm-2">
-                <input type="submit" class="form-control" />
-            </div>
+    <div class="wrapper">
+        <div class="page-header">
+            <h1>{{currListName}}</h1>
         </div>
-    </form>
 
-    <div class="list-group">
-        <a class="list-group-item"
-            ng-repeat="word in getCurrWordList()">
-            <div class="row">
-                <div class="col-sm-10">
-                    <strong>
-                        {{word.title}}
-                    </strong>
-                    <small class="word-meaning text-muted">
-                        &nbsp;&nbsp;&nbsp;{{word.meaning}}
-                    </small>
+        <form ng-submit="insertWord(title, meaning)" class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <input type="text"
+                        ng-model="title"
+                        class="form-control"
+                        placeholder="word"
+                        required />
                 </div>
                 <div class="col-sm-2">
-                    <div class="pull-right">
-                        <button class="btn btn-default"
-                            ng-click="openEditModal()">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </button>
-                        <button class="btn btn-default"
-                            ng-click="deleteWord(word.title)">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </button>
-                    </div>
+                    <input type="text"
+                        ng-model="meaning"
+                        class="form-control"
+                        placeholder="meaning"
+                        required />
+                </div>
+                <div class="col-sm-2">
+                    <input type="submit" class="form-control" />
                 </div>
             </div>
-        </a>
+        </form>
+
+
+        <div class="list-group">
+            <a class="list-group-item"
+                ng-repeat="word in getCurrWordList()">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <strong>
+                            {{word.title}}
+                        </strong>
+                        <small class="word-meaning text-muted">
+                            &nbsp;&nbsp;&nbsp;{{word.meaning}}
+                        </small>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="pull-right">
+                            <button class="btn btn-default"
+                                ng-click="openEditModal(word)">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+                            <button class="btn btn-default"
+                                ng-click="deleteWord(word.title)">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
     </div>
 
     <div class="edit-modal" ng-show="editing">
+        <div class="overlay">
+        </div>
+        <div class="dialog">
+            <h3>Edit Word</h3>
+            <form ng-submit="updateWord(titleEditing, meaningEditing)">
+                <input type="text"
+                    class="form-control"
+                    ng-model="titleEditing" />
+                <input type="text"
+                    class="form-control"
+                    ng-model="meaningEditing" />
+                <input type="submit"
+                    class="form-control" />
+            </form>
+        </div>
     </div>
 </div>

@@ -42,6 +42,15 @@ wordListApp.service('wordListSrvc', function($http, $q) {
         return (request.then(suc, err));
     }
 
+    function updateWord(updateData) {
+        var request = $http({
+            method: 'post',
+            url: 'updateWord',
+            data: updateData
+        });
+        return (request.then(suc, err));
+    }
+
     function deleteWord(wordData) {
         var request = $http({
             method: 'post',
@@ -63,6 +72,7 @@ wordListApp.service('wordListSrvc', function($http, $q) {
         getWordLists: getWordLists,
         createWordList: createWordList,
         insertWord: insertWord,
+        updateWord: updateWord,
         deleteWord: deleteWord
     });
 });
@@ -113,13 +123,32 @@ wordListApp.controller('mainCtrl', function($scope, $routeParams, wordListSrvc) 
         });
     };
 
-    $scope.openEditModal = function() {
+    $scope.openEditModal = function(word) {
         $scope.editing = true;
+        $scope.origWord = word;
+        $scope.titleEditing = word.title;
+        $scope.meaningEditing = word.meaning;
     }
 
-    $scope.updateWord = function(index) {
+    $scope.updateWord = function(newTitle, newMeaning) {
         $scope.editing = false;
-        console.log(index);
+
+        var newWord = {
+            title: newTitle,
+            meaning: newMeaning
+        };
+
+        var currList = $scope.getCurrWordList();
+        var idx = currList.indexOf(_.findWhere(currList, $scope.origWord));
+        currList[idx] = newWord;
+
+        wordListSrvc.updateWord({
+            list_name: $scope.currListName,
+            orig_word: $scope.origWord,
+            new_word: newWord
+        }).then(function(data) {
+            console.log(data);
+        });
     };
 
     $scope.deleteWord = function(title) {
