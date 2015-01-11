@@ -9,21 +9,21 @@
 
         <form ng-submit="insertWord(title, meaning)" class="form-horizontal">
             <div class="form-group">
-                <div class="col-xs-4">
+                <div class="col-sm-4">
                     <input type="text"
                         ng-model="title"
                         class="form-control"
                         placeholder="word"
                         required />
                 </div>
-                <div class="col-xs-4">
+                <div class="col-sm-4">
                     <input type="text"
                         ng-model="meaning"
                         class="form-control"
                         placeholder="meaning"
                         required />
                 </div>
-                <div class="col-xs-4">
+                <div class="col-sm-4">
                     <input type="submit"
                         value="Add"
                         class="form-control" />
@@ -31,21 +31,20 @@
             </div>
         </form>
 
-
         <div class="list-group">
             <a ng-repeat="word in getCurrWordList()"
                 class="list-group-item {{word.important ? 'important' : ''}}">
                 <div class="row">
-                    <div class="col-xs-6">
+                    <div class="col-sm-6">
                         <strong>
                             {{word.title}}
                         </strong>
-                        <small class="word-meaning text-muted">
+                        <small class="word-meaning text-muted hover-display">
                             &nbsp;&nbsp;&nbsp;{{word.meaning}}
                         </small>
                     </div>
-                    <div class="col-xs-6">
-                        <div class="pull-right btn-container">
+                    <div class="col-sm-6">
+                        <div class="btn-group hover-display">
                             <button class="btn btn-default"
                                 ng-click="markImportant(word)">
                                 <span class="glyphicon 
