@@ -73,7 +73,7 @@ wordListApp.service('wordListSrvc', function($http, $q) {
         createWordList: createWordList,
         insertWord: insertWord,
         updateWord: updateWord,
-        deleteWord: deleteWord
+        deleteWord: deleteWord,
     });
 });
 
@@ -137,9 +137,7 @@ wordListApp.controller('mainCtrl', function($scope, $routeParams, wordListSrvc) 
         $scope.meaningEditing = "";
     }
 
-    $scope.updateWord = function(newWord, newMeaning) {
-        $scope.closeEditModal();
-
+    $scope.updateWord = function(newTitle, newMeaning) {
         var newWord = {
             title: newTitle,
             meaning: newMeaning
@@ -156,6 +154,8 @@ wordListApp.controller('mainCtrl', function($scope, $routeParams, wordListSrvc) 
         }).then(function(data) {
             console.log(data);
         });
+        
+        $scope.closeEditModal();
     };
 
     $scope.markImportant = function(word) {
