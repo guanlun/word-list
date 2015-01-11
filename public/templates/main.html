@@ -1,0 +1,12 @@
+<div ng-controller="mainCtrl">
+    <form ng-submit="createWordList(listName)">
+        <input type="text" ng-model="listName" placeholder="Word List Name" required />
+        <input type="submit" />
+    </form>
+
+    <div class="word-lists-container">
+        <div class="wordlist-item" ng-repeat="list in wordLists">
+            <a ng-href="#/word_list/{{list._id}}">{{list.list_name}}</a>
+        </div>
+    </div>
+</div>

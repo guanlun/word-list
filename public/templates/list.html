@@ -1,0 +1,32 @@
+<div ng-controller="mainCtrl">
+    <form ng-submit="insertWord(title, meaning)">
+        <input type="text" ng-model="title" placeholder="word" required />
+        <input type="text" ng-model="meaning" placeholder="meaning" required />
+        <input type="submit" />
+    </form>
+
+    <div class="words-container">
+        <div class="word-item"
+            ng-repeat="word in getCurrWordList()">
+            <span class="word-title"
+                contenteditable="true">
+                {{word.title}}
+            </span>
+            <span class="word-meaning"
+                contenteditable="true">
+                {{word.meaning}}
+            </span>
+            <span class="edit-btn"
+                ng-click="openEditModal()">
+                edit
+            </span>
+            <span class="word-delete-btn"
+                ng-click="deleteWord(word._id)">
+                X
+            </span>
+        </div>
+    </div>
+
+    <div class="edit-modal" ng-show="editing">
+    </div>
+</div>
