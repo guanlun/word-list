@@ -31,37 +31,29 @@
             </div>
         </form>
 
-        <div class="list-group">
-            <a ng-repeat="word in getCurrWordList()"
-                class="list-group-item {{word.important ? 'important' : ''}}">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <strong>
-                            {{word.title}}
-                        </strong>
-                        <small class="word-meaning text-muted hover-display">
-                            &nbsp;&nbsp;&nbsp;{{word.meaning}}
-                        </small>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="btn-group hover-display">
-                            <button class="btn btn-default"
-                                ng-click="markImportant(word)">
-                                <span class="glyphicon 
-                                    {{word.important ? 'glyphicon-star-empty' : 'glyphicon-star'}}"></span>
-                            </button>
-                            <button class="btn btn-default"
-                                ng-click="openEditModal(word)">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </button>
-                            <button class="btn btn-default"
-                                ng-click="deleteWord(word.title)">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </button>
-                        </div>
-                    </div>
+        <div class="words-container">
+            <div ng-repeat="word in getCurrWordList()"
+                class="word {{word.important ? 'important' : ''}}
+                {{isFocusedWord(word) ? 'focused' : ''}}"
+                ng-click="setWordFocused(word)">
+                <div class="word-title"><strong>{{word.title}}</strong></div>
+                <div class="word-meaning text-muted ">{{word.meaning}}</div>
+                <div class="word-actions row">
+                    <button class="btn btn-link col-xs-4"
+                        ng-click="markImportant(word)">
+                        <span class="glyphicon 
+                            {{word.important ? 'glyphicon-star-empty' : 'glyphicon-star'}}"></span>
+                    </button>
+                    <button class="btn btn-link col-xs-4"
+                        ng-click="openEditModal(word)">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                    <button class="btn btn-link col-xs-4"
+                        >
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
                 </div>
-            </a>
+            </div>
         </div>
     </div>
 

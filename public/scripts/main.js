@@ -82,6 +82,7 @@ wordListApp.controller('mainCtrl', function($scope, $routeParams, wordListSrvc) 
     $scope.currListName = '';
 
     $scope.editing = false;
+    $scope.focusedWord = null;
 
     wordListSrvc.getWordLists().then(function(wordLists) {
         $scope.wordLists = wordLists;
@@ -90,6 +91,14 @@ wordListApp.controller('mainCtrl', function($scope, $routeParams, wordListSrvc) 
     $scope.$on('$routeChangeSuccess', function(ev, current, pre) {
         $scope.currListName = current.params.id;
     });
+
+    $scope.setWordFocused = function(word) {
+        $scope.focusedWord = word;
+    };
+
+    $scope.isFocusedWord = function(word) {
+        return word === $scope.focusedWord;
+    };
 
     $scope.createWordList = function(listName) {
         $scope.wordLists.push({
@@ -154,7 +163,7 @@ wordListApp.controller('mainCtrl', function($scope, $routeParams, wordListSrvc) 
         }).then(function(data) {
             console.log(data);
         });
-        
+
         $scope.closeEditModal();
     };
 
@@ -188,6 +197,5 @@ wordListApp.controller('mainCtrl', function($scope, $routeParams, wordListSrvc) 
             return _.findWhere($scope.wordLists, { list_name: $scope.currListName }).words;
         }
     };
-
 });
 
