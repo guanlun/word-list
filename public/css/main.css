@@ -6,17 +6,24 @@ button:focus {
     outline: 0 !important;
 }
 
-.page-header {
-    margin-top: 80px;
-}
-
-.add-word-form {
+.header {
     position: fixed;
     top: 0;
     left: 0;
     padding: 10px;
     width: 100%;
     background: #337ab7;
+    color: white;
+    font-size: 20px;
+}
+
+.header > a {
+    padding: 0 5px;
+    color: #ccc;
+}
+
+.add-word-form {
+    margin: 30px 0;
 }
 
 .edit-modal {
@@ -55,11 +62,8 @@ button:focus {
     margin-top: 20px;
 }
 
-.list-group-item.important {
-    background: #faf2cc;
-}
-
-.list-group-item.important:hover {
+.words-container {
+    margin-top: 60px;
 }
 
 .words-container .word {

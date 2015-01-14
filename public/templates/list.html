@@ -1,35 +1,9 @@
 <div ng-controller="mainCtrl">
     <div class="wrapper">
-        <div class="page-header">
-            <h1>
-                <a ng-href="/#/word_list"><small class="glyphicon glyphicon-chevron-left"></small></a>
-                {{currListName}}
-            </h1>
+        <div class="header">
+            <a ng-href="/#/word_list"><small class="glyphicon glyphicon-chevron-left"></small></a>
+            <span>{{currListName}}</span>
         </div>
-
-        <form ng-submit="insertWord(title, meaning)" class="add-word-form">
-            <div class="form-group">
-                <div class="col-xs-5">
-                    <input type="text"
-                        ng-model="title"
-                        class="form-control"
-                        placeholder="word"
-                        required />
-                </div>
-                <div class="col-xs-5">
-                    <input type="text"
-                        ng-model="meaning"
-                        class="form-control"
-                        placeholder="meaning"
-                        required />
-                </div>
-                <div class="col-xs-2">
-                    <input type="submit"
-                        value="+"
-                        class="form-control" />
-                </div>
-            </div>
-        </form>
 
         <div class="words-container">
             <div ng-repeat="word in getCurrWordList()"
@@ -55,6 +29,30 @@
                 </div>
             </div>
         </div>
+
+        <form ng-submit="insertWord(title, meaning)" class="add-word-form form-horizontal">
+            <div class="form-group">
+                <div class="col-xs-5">
+                    <input type="text"
+                        ng-model="title"
+                        class="form-control"
+                        placeholder="word"
+                        required />
+                </div>
+                <div class="col-xs-5">
+                    <input type="text"
+                        ng-model="meaning"
+                        class="form-control"
+                        placeholder="meaning"
+                        required />
+                </div>
+                <div class="col-xs-2">
+                    <input type="submit"
+                        value="+"
+                        class="form-control" />
+                </div>
+            </div>
+        </form>
     </div>
 
     <div class="edit-modal" ng-show="editing">
