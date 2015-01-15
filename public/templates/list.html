@@ -1,8 +1,19 @@
 <div ng-controller="mainCtrl">
     <div class="wrapper">
-        <div class="header">
-            <a ng-href="/#/word_list"><small class="glyphicon glyphicon-chevron-left"></small></a>
-            <span>{{currListName}}</span>
+        <div class="header row">
+            <div class="col-xs-6">
+                <a ng-href="/#/word_list" class="back-btn">
+                    <small class="glyphicon glyphicon-chevron-left"></small>
+                </a>
+                <span>{{currListName}}</span>
+            </div>
+            <div class="col-xs-6">
+                <div class="header-actions pull-right">
+                    <a href="#">
+                        <span class="glyphicon glyphicon-refresh"></span>
+                    </a>
+                </div>
+            </div>
         </div>
 
         <div class="words-container">
@@ -24,7 +35,7 @@
                     </button>
                     <button class="btn btn-link col-xs-4"
                         >
-                        <span class="glyphicon glyphicon-remove"></span>
+                        <span class="glyphicon glyphicon-share-alt"></span>
                     </button>
                 </div>
             </div>
