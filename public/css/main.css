@@ -15,6 +15,7 @@ button:focus {
     background: rgb(66, 133, 244);
     color: white;
     font-size: 20px;
+    z-index: 10;
 }
 
 .header .glyphicon {

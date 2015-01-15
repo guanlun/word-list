@@ -1,5 +1,5 @@
 <div ng-controller="mainCtrl">
-    <div class="header row">
+    <div class="header container">
         <div class="col-xs-6">
             <a ng-href="/#/word_list" class="back-btn">
                 <small class="glyphicon glyphicon-chevron-left"></small>
@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <div class="words-container">
+    <div class="container words-container">
         <div ng-repeat="word in getCurrWordList()"
             class="word {{word.important ? 'important' : ''}}
             {{isFocusedWord(word) ? 'focused' : ''}}"
