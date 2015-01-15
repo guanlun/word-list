@@ -1,11 +1,5 @@
-@font-face {
-    font-family: HelveticaNeueRom;
-    src: url('/fonts/HelveNeuRom.ttf');
-}
-
 body {
     background: #e5e5e5;
-    font-family: HelveticaNeueRom;
 }
 
 button:focus {
@@ -74,7 +68,7 @@ button:focus {
 
 .words-container .word {
     margin-top: 12px;
-    padding: 12px 20px 10px;
+    padding: 10px 20px;
     font-size: 20px;
     background: white;
     border-radius: 3px;
