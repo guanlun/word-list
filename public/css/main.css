@@ -24,7 +24,7 @@ button:focus {
 }
 
 .add-word-form {
-    margin: 30px 0;
+    margin: 30px auto;
 }
 
 .edit-modal {
