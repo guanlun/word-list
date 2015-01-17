@@ -204,6 +204,10 @@ wordListApp.controller('mainCtrl', function($scope, $routeParams, wordListSrvc) 
         });
     };
 
+    $scope.googleTranslate = function(word) {
+        window.location = 'https://translate.google.com/#en/zh-CN/' + word.title;
+    };
+
     $scope.deleteWord = function(title) {
         var currList = $scope.getCurrWordList();
         var idx = currList.indexOf(_.findWhere(currList, { title: title }));
