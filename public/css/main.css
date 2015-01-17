@@ -10,7 +10,7 @@ button:focus {
     position: fixed;
     top: 0;
     left: 0;
-    padding: 12px 10px 10px;
+    padding: 10px;
     width: 100%;
     background: rgb(66, 133, 244);
     color: white;
@@ -21,6 +21,11 @@ button:focus {
 .header .glyphicon {
     padding: 0 5px;
     color: white;
+}
+
+.header-actions {
+    position: relative;
+    top: 2px;
 }
 
 .header-actions .shuffle-btn {
