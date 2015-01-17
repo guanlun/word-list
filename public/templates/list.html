@@ -47,31 +47,33 @@
                     </button>
                 </div>
             </div>
+
+            <form ng-submit="insertWord(title, meaning)"
+                class="add-word-form form-horizontal">
+                <div class="word new-word-form">
+                    <div class="form-group">
+                        <input type="text"
+                            class="title col-xs-12"
+                            ng-model="title"
+                            placeholder="word..."
+                            required />
+                    </div>
+                    <div class="form-group">
+                        <input type="text"
+                            class="meaning col-xs-12 text-muted"
+                            ng-model="meaning"
+                            placeholder="meaning..."
+                            required />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit"
+                            class="submit-btn col-xs-12"
+                            value="+" />
+                    </div>
+                </div>
+            </form>
         </div>
 
-        <form ng-submit="insertWord(title, meaning)" class="add-word-form form-horizontal">
-            <div class="form-group">
-                <div class="col-xs-5">
-                    <input type="text"
-                        ng-model="title"
-                        class="form-control"
-                        placeholder="word"
-                        required />
-                </div>
-                <div class="col-xs-5">
-                    <input type="text"
-                        ng-model="meaning"
-                        class="form-control"
-                        placeholder="meaning"
-                        required />
-                </div>
-                <div class="col-xs-2">
-                    <input type="submit"
-                        value="+"
-                        class="form-control" />
-                </div>
-            </div>
-        </form>
 
         <div class="edit-modal" ng-show="editing">
             <div class="overlay">

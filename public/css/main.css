@@ -123,6 +123,26 @@ button:focus {
     display: block;
 }
 
+.new-word-form {
+}
+
+.new-word-form .form-group input {
+    outline: none;
+    border: none;
+}
+
+.new-word-form .form-group input.title {
+    font-size: 24px;
+}
+
+.new-word-form .form-group input.meaning {
+    font-size: 20px;
+}
+
+.new-word-form .form-group input.submit-btn {
+    display: none;
+}
+
 @media (max-width: 767px) {
     form .form-control {
         margin-top: 10px;

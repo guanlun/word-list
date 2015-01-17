@@ -61,6 +61,7 @@ wordListApp.service('wordListSrvc', function($http, $q) {
     }
 
     function suc(res) {
+        console.log(res);
         return (res.data);
     }
 
@@ -154,6 +155,14 @@ wordListApp.controller('mainCtrl', function($scope, $routeParams, wordListSrvc) 
             word: word
         }).then(function(data) {
             console.log(data);
+
+            // TODO: check if success
+            $scope.focusedWord = word;
+            $('html, body').animate({
+                scrollTop: $(document).height()
+            }, 200);
+            $('.new-word-form .form-group input.title').val('').focus();
+            $('.new-word-form .form-group input.meaning').val('');
         });
     };
 
