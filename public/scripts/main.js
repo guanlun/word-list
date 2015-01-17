@@ -84,13 +84,38 @@ wordListApp.controller('mainCtrl', function($scope, $routeParams, wordListSrvc) 
     $scope.editing = false;
     $scope.focusedWord = null;
 
-    wordListSrvc.getWordLists().then(function(wordLists) {
-        $scope.wordLists = wordLists;
-    });
+    $scope.shouldFilterOnImportance = false;
 
     $scope.$on('$routeChangeSuccess', function(ev, current, pre) {
         $scope.currListName = current.params.id;
     });
+
+    $scope.refreshWordLists = function() {
+        wordListSrvc.getWordLists().then(function(wordLists) {
+            $scope.wordLists = wordLists;
+        });
+    };
+
+    $scope.importantFilter = function(word) {
+        if ($scope.shouldFilterOnImportance) {
+            return word.important;
+        }
+        return true;
+    };
+
+    $scope.toggleFilter = function() {
+        $scope.shouldFilterOnImportance = !$scope.shouldFilterOnImportance;
+    };
+
+    $scope.shuffleWords = function() {
+        var words = $scope.getCurrWordList();
+        for (var i = 0; i < words.length; i++) {
+            var randIdx = Math.floor(Math.random() * words.length);
+            var tmp = words[i];
+            words[i] = words[randIdx];
+            words[randIdx] = tmp;
+        }
+    };
 
     $scope.setWordFocused = function(word) {
         $scope.focusedWord = word;
@@ -137,14 +162,14 @@ wordListApp.controller('mainCtrl', function($scope, $routeParams, wordListSrvc) 
         $scope.origWord = word;
         $scope.titleEditing = word.title;
         $scope.meaningEditing = word.meaning;
-    }
+    };
 
     $scope.closeEditModal = function() {
         $scope.editing = false;
         $scope.origWord = "";
         $scope.titleEditing = "";
         $scope.meaningEditing = "";
-    }
+    };
 
     $scope.updateWord = function(newTitle, newMeaning) {
         var newWord = {
@@ -190,12 +215,14 @@ wordListApp.controller('mainCtrl', function($scope, $routeParams, wordListSrvc) 
         }).then(function(data) {
             console.log(data);
         });
-    }
+    };
 
     $scope.getCurrWordList = function() {
         if ($scope.wordLists.length != 0) {
             return _.findWhere($scope.wordLists, { list_name: $scope.currListName }).words;
         }
     };
+
+    $scope.refreshWordLists();
 });
 

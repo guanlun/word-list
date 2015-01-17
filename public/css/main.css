@@ -23,6 +23,10 @@ button:focus {
     color: white;
 }
 
+.header-actions .shuffle-btn {
+    margin-right: 5px;
+}
+
 .add-word-form {
     margin: 30px auto;
 }
@@ -63,11 +67,11 @@ button:focus {
     margin-top: 20px;
 }
 
-.words-container {
+.main-container {
     margin-top: 60px;
 }
 
-.words-container .word {
+.main-container .word {
     margin-top: 12px;
     padding: 10px 20px;
     font-size: 20px;
@@ -77,40 +81,40 @@ button:focus {
     cursor: pointer;
 }
 
-.words-container .word.important {
+.main-container .word.important {
     background: #fdf9d2;
 }
 
-.words-container .word .word-title {
+.main-container .word .word-title {
     font-size: 24px;
     color: #333;
 }
 
-.words-container .word .word-meaning {
+.main-container .word .word-meaning {
     display: none;
     font-size: 20px;
 }
 
-.words-container .word .word-actions {
+.main-container .word .word-actions {
     margin-top: 5px;
     display: none;
 }
 
-.words-container .word .word-actions button span {
+.main-container .word .word-actions button span {
     font-size: 20px;
 }
 
-.words-container .word.focused {
+.main-container .word.focused {
 }
 
-.words-container .word.focused .word-title {
+.main-container .word.focused .word-title {
 }
 
-.words-container .word.focused .word-meaning {
+.main-container .word.focused .word-meaning {
     display: block;
 }
 
-.words-container .word.focused .word-actions {
+.main-container .word.focused .word-actions {
     display: block;
 }
 
