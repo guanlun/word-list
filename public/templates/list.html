@@ -1,98 +1,92 @@
-<div ng-controller="mainCtrl">
-    <div class="header container">
-        <div class="row">
-            <div class="col-xs-6">
-                <a ng-href="/#/word_list" class="back-btn">
-                    <small class="glyphicon glyphicon-chevron-left"></small>
-                </a>
-                <span>{{currListName}}</span>
-            </div>
-            <div class="col-xs-6">
-                <div class="header-actions pull-right">
-                    <a class="shuffle-btn" ng-click="shuffleWords()">
-                        <span class="glyphicon glyphicon-random"></span>
-                    </a>
-                    <a class="filter-btn" ng-click="toggleFilter()">
-                        <span class="glyphicon {{shouldFilterOnImportance ? 'glyphicon-star-empty' : 'glyphicon-star'}}"></span>
-                    </a>
-                    <a class="refresh-btn" ng-click="refreshWordLists()">
-                        <span class="glyphicon glyphicon-refresh"></span>
-                    </a>
-                </div>
+<div class="header container">
+    <div class="pull-left">
+        <a ng-href="/#/word_list" class="back-btn">
+            <small class="glyphicon glyphicon-chevron-left"></small>
+        </a>
+        <span>{{currListName}}</span>
+    </div>
+    <div class="header-actions pull-right">
+        <a class="shuffle-btn" ng-click="shuffleWords()">
+            <span class="glyphicon glyphicon-random"></span>
+        </a>
+        <a class="filter-btn" ng-click="toggleFilter()">
+            <span class="glyphicon {{shouldFilterOnImportance ? 'glyphicon-star-empty' : 'glyphicon-star'}}"></span>
+        </a>
+        <a class="refresh-btn" ng-click="refreshWordLists()">
+            <span class="glyphicon glyphicon-refresh"></span>
+        </a>
+        </div>
+</div>
+
+<div class="container">
+    <div class="main-container">
+        <div ng-repeat="word in getCurrWordList() | filter: importantFilter"
+            class="word {{word.important ? 'important' : ''}}
+            {{isFocusedWord(word) ? 'focused' : ''}}"
+            ng-click="setWordFocused(word)">
+            <div class="word-title">{{word.title}}</div>
+            <div class="word-meaning text-muted ">{{word.meaning}}</div>
+            <div class="word-actions row">
+                <button class="btn btn-link col-xs-4"
+                    ng-click="markImportant(word)">
+                    <span class="glyphicon
+                        {{word.important ? 'glyphicon-star-empty' : 'glyphicon-star'}}"></span>
+                </button>
+                <button class="btn btn-link col-xs-4"
+                    ng-click="openEditModal(word)">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+                <button class="btn btn-link col-xs-4"
+                    ng-click="googleTranslate(word)">
+                    <span class="glyphicon glyphicon-share-alt"></span>
+                </button>
             </div>
         </div>
+
+        <form ng-submit="insertWord(title, meaning)"
+            class="add-word-form form-horizontal">
+            <div class="word new-word-form">
+                <div class="form-group">
+                    <input type="text"
+                        class="title col-xs-12"
+                        ng-model="title"
+                        placeholder="word..."
+                        required />
+                </div>
+                <div class="form-group">
+                    <input type="text"
+                        class="meaning col-xs-12 text-muted"
+                        ng-model="meaning"
+                        placeholder="meaning..."
+                        required />
+                </div>
+                <div class="form-group">
+                    <input type="submit"
+                        class="submit-btn col-xs-12"
+                        value="+" />
+                </div>
+            </div>
+        </form>
     </div>
 
-    <div class="container">
-        <div class="main-container">
-            <div ng-repeat="word in getCurrWordList() | filter: importantFilter"
-                class="word {{word.important ? 'important' : ''}}
-                {{isFocusedWord(word) ? 'focused' : ''}}"
-                ng-click="setWordFocused(word)">
-                <div class="word-title">{{word.title}}</div>
-                <div class="word-meaning text-muted ">{{word.meaning}}</div>
-                <div class="word-actions row">
-                    <button class="btn btn-link col-xs-4"
-                        ng-click="markImportant(word)">
-                        <span class="glyphicon
-                            {{word.important ? 'glyphicon-star-empty' : 'glyphicon-star'}}"></span>
-                    </button>
-                    <button class="btn btn-link col-xs-4"
-                        ng-click="openEditModal(word)">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                    </button>
-                    <button class="btn btn-link col-xs-4"
-                        ng-click="googleTranslate(word)">
-                        <span class="glyphicon glyphicon-share-alt"></span>
-                    </button>
-                </div>
-            </div>
 
-            <form ng-submit="insertWord(title, meaning)"
-                class="add-word-form form-horizontal">
-                <div class="word new-word-form">
-                    <div class="form-group">
-                        <input type="text"
-                            class="title col-xs-12"
-                            ng-model="title"
-                            placeholder="word..."
-                            required />
-                    </div>
-                    <div class="form-group">
-                        <input type="text"
-                            class="meaning col-xs-12 text-muted"
-                            ng-model="meaning"
-                            placeholder="meaning..."
-                            required />
-                    </div>
-                    <div class="form-group">
-                        <input type="submit"
-                            class="submit-btn col-xs-12"
-                            value="+" />
-                    </div>
-                </div>
-            </form>
+    <div class="edit-modal" ng-show="editing">
+        <div class="overlay">
         </div>
-
-
-        <div class="edit-modal" ng-show="editing">
-            <div class="overlay">
-            </div>
-            <div class="dialog">
-                <span ng-click="closeEditModal()"
-                    class="glyphicon glyphicon-remove close-btn"></span>
-                <h3>Edit Word</h3>
-                <form ng-submit="updateWord(titleEditing, meaningEditing)">
-                    <input type="text"
-                        class="form-control"
-                        ng-model="titleEditing" />
-                    <input type="text"
-                        class="form-control"
-                        ng-model="meaningEditing" />
-                    <input type="submit"
-                        class="form-control" />
-                </form>
-            </div>
+        <div class="dialog">
+            <span ng-click="closeEditModal()"
+                class="glyphicon glyphicon-remove close-btn"></span>
+            <h3>Edit Word</h3>
+            <form ng-submit="updateWord(titleEditing, meaningEditing)">
+                <input type="text"
+                    class="form-control"
+                    ng-model="titleEditing" />
+                <input type="text"
+                    class="form-control"
+                    ng-model="meaningEditing" />
+                <input type="submit"
+                    class="form-control" />
+            </form>
         </div>
     </div>
 </div>

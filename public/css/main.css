@@ -6,6 +6,15 @@ button:focus {
     outline: 0 !important;
 }
 
+input[type="text"] {
+    outline: none;
+    border: none;
+}
+
+input[type="submit"] {
+    display: none;
+}
+
 .header {
     position: fixed;
     top: 0;
@@ -16,6 +25,17 @@ button:focus {
     color: white;
     font-size: 18px;
     z-index: 10;
+}
+
+.header .search-input {
+    position: relative;
+    left: -3px;
+    top: -2px;
+    font-size: 16px;
+    font-weight: 200;
+    width: 160px;
+    background: transparent;
+    border-bottom: 1px #ccc solid;
 }
 
 .header .glyphicon {
@@ -127,8 +147,6 @@ button:focus {
 }
 
 .new-word-form .form-group input {
-    outline: none;
-    border: none;
 }
 
 .new-word-form .form-group input.title {
@@ -137,10 +155,6 @@ button:focus {
 
 .new-word-form .form-group input.meaning {
     font-size: 20px;
-}
-
-.new-word-form .form-group input.submit-btn {
-    display: none;
 }
 
 @media (max-width: 767px) {

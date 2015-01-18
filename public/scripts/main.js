@@ -86,6 +86,10 @@ wordListApp.controller('mainCtrl', function($scope, $routeParams, wordListSrvc) 
     $scope.focusedWord = null;
 
     $scope.shouldFilterOnImportance = false;
+    $scope.searchFocused = false;
+    $scope.currView = 'list';
+
+    $scope.randomWordList = [];
 
     $scope.$on('$routeChangeSuccess', function(ev, current, pre) {
         $scope.currListName = current.params.id;
@@ -107,6 +111,10 @@ wordListApp.controller('mainCtrl', function($scope, $routeParams, wordListSrvc) 
     $scope.toggleFilter = function() {
         $scope.shouldFilterOnImportance = !$scope.shouldFilterOnImportance;
     };
+
+    $scope.toggleSearchInput = function() {
+        $scope.shouldShowSearchInput = !$scope.shouldShowSearchInput;
+    }
 
     $scope.shuffleWords = function() {
         var words = $scope.getCurrWordList();
@@ -230,9 +238,18 @@ wordListApp.controller('mainCtrl', function($scope, $routeParams, wordListSrvc) 
         });
     };
 
+    $scope.generateRandomWordList = function() {
+    };
+
     $scope.getCurrWordList = function() {
         if ($scope.wordLists.length != 0) {
-            return _.findWhere($scope.wordLists, { list_name: $scope.currListName }).words;
+            if ($scope.currListName == 'random') {
+                return $scope.randomWordList;
+            } else {
+                return _.findWhere($scope.wordLists, {
+                    list_name: $scope.currListName
+                }).words;
+            }
         }
     };
 

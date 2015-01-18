@@ -1,42 +1,55 @@
-<div ng-controller="mainCtrl">
-    <div class="header container">
-        <div class="row">
-            <div class="col-xs-6">
-                <span>Word Lists</span>
-            </div>
-            <div class="col-xs-6">
-                <div class="header-actions pull-right">
-                    <a class="refresh-btn" ng-click="refreshWordLists()">
-                        <span class="glyphicon glyphicon-refresh"></span>
-                    </a>
-                </div>
+<div class="header container">
+    <div class="pull-left">
+        <span class="glyphicon glyphicon-search"></span>
+        <input type="text"
+            class="search-input"
+            placeholder="Search..."
+            ng-focus="searchFocused = true"
+            ng-blur="searchFocused = false" />
+    </div>
+    <div class="header-actions pull-right">
+        <div ng-switch="searchFocused">
+            <div ng-switch-when="true">
+                <a class="" ng-click="">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
+            </div> 
+            <div ng-switch-when="false">
+                <a class="random-btn"
+                    ng-href="#/word_list/random"
+                    ng-click="generateRandomWordList()">
+                    <span class="glyphicon glyphicon-random"></span>
+                </a>
+                <a class="refresh-btn" ng-click="refreshWordLists()">
+                    <span class="glyphicon glyphicon-refresh"></span>
+                </a>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="container main-container">
-        <form ng-submit="createWordList(listName)" class="form-horizontal">
-            <div class="form-group">
-                <div class="col-sm-4">
-                    <input type="text"
-                        ng-model="listName"
-                        class="form-control"
-                        placeholder="Word List"
-                        required />
-                </div>
-                <div class="col-sm-4">
-                    <input type="submit" class="form-control" value="Add" />
-                </div>
+<div class="container main-container">
+    <form ng-submit="createWordList(listName)" class="form-horizontal">
+        <div class="form-group">
+            <div class="col-sm-4">
+                <input type="text"
+                    ng-model="listName"
+                    class="form-control"
+                    placeholder="Word List"
+                    required />
             </div>
-        </form>
-
-        <div class="list-group">
-            <a class="list-group-item"
-                ng-repeat="list in wordLists"
-                ng-href="#/word_list/{{list.list_name}}">
-                {{list.list_name}}
-                <span class="badge">{{list.words.length}}</span>
-            </a>
+            <div class="col-sm-4">
+                <input type="submit" class="form-control" value="Add" />
+            </div>
         </div>
+    </form>
+
+    <div class="list-group">
+        <a class="list-group-item"
+            ng-repeat="list in wordLists"
+            ng-href="#/word_list/{{list.list_name}}">
+            {{list.list_name}}
+            <span class="badge">{{list.words.length}}</span>
+        </a>
     </div>
 </div>
