@@ -191,7 +191,8 @@ wordListApp.controller('mainCtrl', function($scope, $routeParams, wordListSrvc) 
     $scope.updateWord = function(newTitle, newMeaning) {
         var newWord = {
             title: newTitle,
-            meaning: newMeaning
+            meaning: newMeaning,
+            important: $scope.origWord.important
         };
 
         var currList = $scope.getCurrWordList();
@@ -219,11 +220,6 @@ wordListApp.controller('mainCtrl', function($scope, $routeParams, wordListSrvc) 
         }).then(function(data) {
             console.log(data);
         });
-    };
-
-    $scope.googleTranslate = function(word) {
-        // window.location = 'https://translate.google.com/#en/zh-CN/' + word.title;
-        window.location = 'http://www.merriam-webster.com/dictionary/' + word.title;
     };
 
     $scope.deleteWord = function(title) {

@@ -125,7 +125,7 @@ input[type="submit"] {
     display: none;
 }
 
-.main-container .word .word-actions button span {
+.main-container .word .word-actions a span {
     font-size: 20px;
 }
 

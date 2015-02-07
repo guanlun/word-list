@@ -27,19 +27,19 @@
             <div class="word-title">{{word.title}}</div>
             <div class="word-meaning text-muted ">{{word.meaning}}</div>
             <div class="word-actions row">
-                <button class="btn btn-link col-xs-4"
+                <a class="btn btn-link col-xs-4"
                     ng-click="markImportant(word)">
                     <span class="glyphicon
                         {{word.important ? 'glyphicon-star-empty' : 'glyphicon-star'}}"></span>
-                </button>
-                <button class="btn btn-link col-xs-4"
+                </a>
+                <a class="btn btn-link col-xs-4"
                     ng-click="openEditModal(word)">
                     <span class="glyphicon glyphicon-pencil"></span>
-                </button>
-                <button class="btn btn-link col-xs-4"
-                    ng-click="googleTranslate(word)">
+                </a>
+                <a class="btn btn-link col-xs-4"
+                    ng-href="{{ 'http://www.merriam-webster.com/dictionary/' + word.title }}">
                     <span class="glyphicon glyphicon-share-alt"></span>
-                </button>
+                </a>
             </div>
         </div>
 
